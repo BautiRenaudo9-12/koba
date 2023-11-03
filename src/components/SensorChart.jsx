@@ -53,5 +53,5 @@ export const SensorChart = ({ data }) => {
         }
     }, [data]);
 
-    return <canvas style={{ marginTop: "200px", width: "400px" }} ref={chartRef} />;
+    return <canvas className='animate__animated animate__flipInX' style={{ marginTop: "200px", width: "400px" }} ref={chartRef} />;
 };

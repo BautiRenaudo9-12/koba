@@ -1,9 +1,9 @@
 import React from 'react';
 import "../SensorUltraSonico.css"
 
-export const Card = ({ numero }) => {
+export const Card = ({ numero, animateName }) => {
     return (
-        <div className="parent">
+        <div className={"parent animate__animated animate__flipInX"}>
             <div className="rojo-point"></div>
             <div className="card">
                 <div className="logo">

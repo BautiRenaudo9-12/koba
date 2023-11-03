@@ -7,6 +7,7 @@ import { useEffect } from 'react'
 import "./Loader.css"
 import { useState } from 'react'
 import { SensorChart } from './components/SensorChart'
+import 'animate.css';
 
 const exampleSensorData = [
   { timestamp: '10:00', value: 25 },
@@ -63,7 +64,7 @@ function App() {
       </div>
 
       {
-        toggleButton ? <Card numero={numero} /> : <SensorChart data={exampleSensorData} />
+        toggleButton ? <Card numero={numero} /> : <SensorChart data={exampleSensorData}/>
       }
     </>
   )
