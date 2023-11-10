@@ -1,7 +1,7 @@
 import React from 'react';
 import "../SensorUltraSonico.css"
 
-export const Card = ({ numero, animateName }) => {
+export const Card = ({ numero }) => {
     return (
         <div className={"parent animate__animated animate__flipInX"}>
             <div className="rojo-point"></div>

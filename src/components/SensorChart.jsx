@@ -9,11 +9,11 @@ export const SensorChart = ({ data }) => {
     const chartConfig = {
         type: 'line',
         data: {
-            labels: data.map((item, index) => item.timestamp),
+            labels: data.map((item, index) => item.time),
             datasets: [
                 {
                     label: 'Datos del Sensor',
-                    data: data.map((item, index) => item.value),
+                    data: data.map((item, index) => item.data),
                     borderColor: 'rgba(75, 192, 192, 1)',
                     backgroundColor: [
                         "rgb(0, 255, 214)",

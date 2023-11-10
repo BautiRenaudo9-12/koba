@@ -1,44 +1,51 @@
 import React, { useState, useEffect } from 'react';
 import { Client } from 'paho-mqtt';
+import Toastify from 'toastify-js'
+import "toastify-js/src/toastify.css"
 
 const MQTT_SERVER = '10.0.3.201';
 const MQTT_PORT = 8083;
-const MQTT_TOPIC = 'ultrasonico'; // Reemplaza 'tu_topic_aqui' con el topic específico del sensor que estás utilizando
+const MQTT_TOPIC = 'ultrasonico';
 
-export const MQTTComponent = ({sensorData, setSensorData}) => {
+export const MQTTComponent = ({ sensorData, setSensorData }) => {
 
   useEffect(() => {
-    const client = new Client({ 
-      broker: `mqtt://${MQTT_SERVER}:${MQTT_PORT}/mqtt`,
-      clientId: 'clientId_' + parseInt(Math.random() * 100, 10),
-    });
-
-    const onConnectionLost = (responseObject) => {
-      if (responseObject.errorCode !== 0) {
-        console.log('Conexión perdida: ' + responseObject.errorMessage);
-      }
-    };
-
-    const onMessageArrived = (message) => {
-      const data = JSON.parse(message.payloadString);
-      setSensorData((prevData) => [...prevData, data]);
-    };
+    // Conéctate al servidor MQTT
+    const client = new Client(MQTT_SERVER, MQTT_PORT, "");
 
     client.onConnectionLost = onConnectionLost;
     client.onMessageArrived = onMessageArrived;
 
-    client.connect({
-      onSuccess: () => {
-        console.log('Conexión establecida con el servidor MQTT.');
-        client.subscribe(MQTT_TOPIC);
-      },
-      useSSL: false,
-    });
+    client.connect({ onSuccess: onConnect });
 
-    return () => {
-      client.disconnect();
-      console.log('Conexión cerrada.');
-    };
+    function onConnect() {
+      console.log("Conectado al servidor MQTT");
+      client.subscribe(MQTT_TOPIC);
+      Toastify({
+        text: "Conectado al servidor",
+        duration: 3000,
+        backgroundColor: "linear-gradient(135deg, rgb(0, 255, 214) 0%, rgb(8, 226, 96) 100%)",
+        style: {
+          color: "#00894d",
+          fontWeight: "900"
+        }
+
+      }).showToast();
+    }
+
+    function onConnectionLost(responseObject) {
+      if (responseObject.errorCode !== 0) {
+        console.log("Conexión perdida: " + responseObject.errorMessage);
+      }
+    }
+
+    function onMessageArrived(message) {
+      const data = message.payloadString;
+      const time = new Date().toLocaleTimeString();
+
+      // Agrega los nuevos datos al gráfico
+      setSensorData([...sensorData, { time, data }])
+    }
   }, []);
 
   const bars = sensorData.map((dataPoint, index) => (
