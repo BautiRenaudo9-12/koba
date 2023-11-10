@@ -1,7 +1,8 @@
 import React from 'react';
 import "../SensorUltraSonico.css"
+import moment from 'moment/moment';
 
-export const Card = ({ numero }) => {
+export const Card = ({ sensorData }) => {
     return (
         <div className={"parent animate__animated animate__flipInX"}>
             <div className="rojo-point"></div>
@@ -25,23 +26,10 @@ export const Card = ({ numero }) => {
                 </div>
                 <div className="glass" />
                 <div className="content">
-                    <span className="title">{numero} meters</span>
+                    <span className="title">{sensorData.length > 0 ? sensorData[sensorData.length - 1].data + " meters" : "Wating data..."}</span>
                     <span className="text">
-                        Distance: {numero} m
+                        {sensorData.length > 0 ? "Timestamp: " + sensorData[sensorData.length - 1].time : "Wating data..."}
                     </span>
-                    <span className="text">
-                        Tiempo de vuelo: 3800 µs
-                    </span>
-                    <span className="text">
-                        Nivel de señal: {numero + Math.floor(Math.random() * (5 - -5 + 1)) + 5} dB
-                    </span>
-                    <span className="text">
-                        Frecuencia de operación: {numero + Math.floor(Math.random() * (20 - -20 + 1)) + 20} kHz
-                    </span>
-                    <span className="text">
-                        Ángulo de detección: 30 grados
-                    </span>
-
                 </div>
             </div>
         </div>

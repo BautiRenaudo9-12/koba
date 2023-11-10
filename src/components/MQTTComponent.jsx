@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Client } from 'paho-mqtt';
 import Toastify from 'toastify-js'
 import "toastify-js/src/toastify.css"
+import moment from 'moment/moment';
 
 const MQTT_SERVER = '10.0.3.201';
 const MQTT_PORT = 8083;
@@ -41,10 +42,9 @@ export const MQTTComponent = ({ sensorData, setSensorData }) => {
 
     function onMessageArrived(message) {
       const data = message.payloadString;
-      const time = new Date().toLocaleTimeString();
-
+      const time = moment().format("hh:mm")
       // Agrega los nuevos datos al gráfico
-      setSensorData([...sensorData, { time, data }])
+      setSensorData(prevSensorData => [...prevSensorData, { time, data }])
     }
   }, []);
 
@@ -62,7 +62,6 @@ export const MQTTComponent = ({ sensorData, setSensorData }) => {
 
   return (
     <div>
-      <h1>Sensor Data Visualization</h1>
       <div style={{ display: 'flex' }}>{bars}</div>
     </div>
   );

@@ -7,6 +7,7 @@ import { useState } from 'react'
 import { SensorChart } from './components/SensorChart'
 import 'animate.css';
 
+
 function App() {
   const [sensorData, setSensorData] = useState([]);
   const [toggleButton, setToggleButton] = useState(true)
@@ -38,7 +39,7 @@ function App() {
       <MQTTComponent sensorData={sensorData} setSensorData={setSensorData} />
 
       {
-        toggleButton ? <Card numero={numero} /> : <SensorChart data={sensorData} />
+        toggleButton ? <Card sensorData={sensorData} /> : <SensorChart data={sensorData} />
       }
     </>
   )

@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import Chart from 'chart.js/auto';
+import moment from 'moment/moment';
 
 export const SensorChart = ({ data }) => {
     const chartRef = useRef(null);
