@@ -12,7 +12,7 @@ export const MQTTComponent = ({ sensorData, setSensorData }) => {
 
   useEffect(() => {
     // Conéctate al servidor MQTT
-    const client = new Client(MQTT_SERVER, MQTT_PORT, "");
+    const client = new Client(`ws://${MQTT_SERVER}:${MQTT_PORT}/mqtt`, "");
 
     client.onConnectionLost = onConnectionLost;
     client.onMessageArrived = onMessageArrived;
