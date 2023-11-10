@@ -18,7 +18,7 @@ function App() {
     <>
       <div className="loader">
         <p className="text">
-          SENSOR <br /> ULTRASONICO
+          SENSOR <br /> ULTRASONICO SEXOO
         </p>
       </div>
 
