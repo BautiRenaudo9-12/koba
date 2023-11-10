@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Client } from 'paho-mqtt';
 
 const MQTT_SERVER = '10.0.3.201';
-const MQTT_PORT = 1883;
-const MQTT_TOPIC = 'tu_topic_aqui'; // Reemplaza 'tu_topic_aqui' con el topic específico del sensor que estás utilizando
+const MQTT_PORT = 8083;
+const MQTT_TOPIC = 'ultrasonico'; // Reemplaza 'tu_topic_aqui' con el topic específico del sensor que estás utilizando
 
 export const MQTTComponent = ({sensorData, setSensorData}) => {
 
   useEffect(() => {
     const client = new Client({ 
-      broker: `ws://${MQTT_SERVER}:${MQTT_PORT}/mqtt`,
+      broker: `mqtt://${MQTT_SERVER}:${MQTT_PORT}/mqtt`,
       clientId: 'clientId_' + parseInt(Math.random() * 100, 10),
     });
 

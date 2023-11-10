@@ -9,13 +9,13 @@ import { useState } from 'react'
 import { SensorChart } from './components/SensorChart'
 import 'animate.css';
 
-const exampleSensorData = [
+/*const exampleSensorData = [
   { timestamp: '10:00', value: 25 },
   { timestamp: '10:15', value: 28 },
   { timestamp: '10:30', value: 22 },
   { timestamp: '10:45', value: 24 },
   { timestamp: '11:00', value: 26 },
-];
+];*/
 
 function App() {
   const [sensorData, setSensorData] = useState([]);
