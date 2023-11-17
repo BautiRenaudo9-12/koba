@@ -39,7 +39,7 @@ function App() {
       <MQTTComponent sensorData={sensorData} setSensorData={setSensorData} />
 
       {
-        toggleButton ? <Card sensorData={sensorData} /> : <SensorChart data={sensorData} />
+        toggleButton ? <Card sensorData={sensorData} /> : <SensorChart sensorData={sensorData} />
       }
     </>
   )
