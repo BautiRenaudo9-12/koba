@@ -9,7 +9,6 @@ const MQTT_PORT = 8083;
 const MQTT_TOPIC = 'ultrasonico';
 
 export const MQTTComponent = ({ sensorData, setSensorData }) => {
-
   useEffect(() => {
     // Conéctate al servidor MQTT
     const client = new Client(`ws://${MQTT_SERVER}:${MQTT_PORT}/mqtt`, "");
